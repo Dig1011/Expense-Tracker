@@ -19,7 +19,7 @@ const ExpenseForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    const response = await fetch('https://api.example.com/expenses', {
+    const response = await fetch('http://localhost:5000/expenses', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
