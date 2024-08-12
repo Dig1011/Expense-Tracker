@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { Schema } = mongoose;
-
+const JWT_SECRET=require("../config");
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -28,7 +28,8 @@ const expenseSchema = new Schema({
   name: String,
   amount: Number,
   category: String,
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true }//changed
 });
 
 const Expense = mongoose.model('Expense', expenseSchema);
@@ -61,7 +62,7 @@ const authMiddleware = (req, res, next) => {
 
   const token = authHeader.split(' ')[1];
   try {
-    const decoded = jwt.verify(token, 'your-secret-key');
+    const decoded = jwt.verify(token, JWT_SECRET);
     req.userId = decoded.userId;
     next();
   } catch (err) {
@@ -79,7 +80,7 @@ app.post('/signup', async (req, res) => {
 
   const user = new User({ username, password });
   await user.save();
-  const token = jwt.sign({ userId: user._id }, 'your-secret-key');
+  const token = jwt.sign({ userId: user._id }, JWT_SECRET);
   res.json({ message: 'User created successfully', token });
 });
 
@@ -90,14 +91,14 @@ app.post('/signin', async (req, res) => {
     return res.status(400).json({ message: 'Invalid email or password' });
   }
 
-  const token = jwt.sign({ userId: user._id }, 'your-secret-key');
+  const token = jwt.sign({ userId: user._id }, JWT_SECRET);
   res.json({ token });
 });
 
 // Expense Routes
 app.get('/expenses', authMiddleware, async (req, res) => {
   try {
-    const expenses = await Expense.find();
+    const expenses = await Expense.find({ userId: req.userId });//changed
     res.json(expenses);
   } catch (err) {
     res.status(500).send(err);
@@ -110,7 +111,8 @@ app.post('/expenses', authMiddleware, async (req, res) => {
   const newExpense = new Expense({
     name,
     amount,
-    category
+    category,
+    userId: req.userId
   });
 
   try {

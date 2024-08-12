@@ -9,7 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function fetchExpenses() {
-  fetch('http://localhost:3000/expenses')
+  const token = localStorage.getItem('token'); // Retrieve the JWT token
+
+  fetch('http://localhost:5000/expenses', {
+    headers: {
+      'Authorization': `Bearer ${token}` // Include the token in the request
+    }
+  })
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -24,35 +30,37 @@ function fetchExpenses() {
 }
 
 function addExpense() {
+  const token = localStorage.getItem('token'); // Retrieve the JWT token
   const text = document.getElementById('text').value;
   const amount = parseFloat(document.getElementById('amount').value);
 
   const expense = {
     name: text,
     amount: amount,
-    category: 'General' // You can add a category field in the form if needed
+    category: 'General'
   };
 
-  fetch('http://localhost:3000/expenses', {
+  fetch('http://localhost:5000/expenses', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}` // Include the token in the request
     },
     body: JSON.stringify(expense)
   })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log('Expense added:', data);
-    fetchExpenses(); // Refresh the list of expenses
-    document.getElementById('text').value = '';
-    document.getElementById('amount').value = '';
-  })
-  .catch(error => console.error('Error adding expense:', error));
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Expense added:', data);
+      fetchExpenses(); // Refresh the list of expenses
+      document.getElementById('text').value = '';
+      document.getElementById('amount').value = '';
+    })
+    .catch(error => console.error('Error adding expense:', error));
 }
 
 function displayExpenses(expenses) {

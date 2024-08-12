@@ -1,0 +1,77 @@
+[
+    {
+      "username": "user1@gmail.com",
+      "expenses": [
+        { "name": "food", "amount": "500" },
+        { "name": "transportation", "amount": "300" },
+        { "name": "utilities", "amount": "150" },
+        { "name": "entertainment", "amount": "200" },
+        { "name": "clothing", "amount": "250" },
+        { "name": "groceries", "amount": "400" },
+        { "name": "medical", "amount": "100" },
+        { "name": "insurance", "amount": "150" },
+        { "name": "rent", "amount": "1000" },
+        { "name": "savings", "amount": "300" }
+      ]
+    },
+    {
+      "username": "user2@gmail.com",
+      "expenses": [
+        { "name": "food", "amount": "600" },
+        { "name": "transportation", "amount": "350" },
+        { "name": "utilities", "amount": "180" },
+        { "name": "entertainment", "amount": "220" },
+        { "name": "clothing", "amount": "280" },
+        { "name": "groceries", "amount": "450" },
+        { "name": "medical", "amount": "120" },
+        { "name": "insurance", "amount": "170" },
+        { "name": "rent", "amount": "1100" },
+        { "name": "savings", "amount": "320" }
+      ]
+    },
+    {
+      "username": "user3@gmail.com",
+      "expenses": [
+        { "name": "food", "amount": "550" },
+        { "name": "transportation", "amount": "320" },
+        { "name": "utilities", "amount": "160" },
+        { "name": "entertainment", "amount": "210" },
+        { "name": "clothing", "amount": "260" },
+        { "name": "groceries", "amount": "430" },
+        { "name": "medical", "amount": "110" },
+        { "name": "insurance", "amount": "160" },
+        { "name": "rent", "amount": "1050" },
+        { "name": "savings", "amount": "310" }
+      ]
+    },
+    {
+      "username": "user4@gmail.com",
+      "expenses": [
+        { "name": "food", "amount": "580" },
+        { "name": "transportation", "amount": "340" },
+        { "name": "utilities", "amount": "170" },
+        { "name": "entertainment", "amount": "230" },
+        { "name": "clothing", "amount": "270" },
+        { "name": "groceries", "amount": "440" },
+        { "name": "medical", "amount": "115" },
+        { "name": "insurance", "amount": "165" },
+        { "name": "rent", "amount": "1080" },
+        { "name": "savings", "amount": "315" }
+      ]
+    },
+    {
+      "username": "user5@gmail.com",
+      "expenses": [
+        { "name": "food", "amount": "620" },
+        { "name": "transportation", "amount": "360" },
+        { "name": "utilities", "amount": "190" },
+        { "name": "entertainment", "amount": "240" },
+        { "name": "clothing", "amount": "290" },
+        { "name": "groceries", "amount": "470" },
+        { "name": "medical", "amount": "130" },
+        { "name": "insurance", "amount": "175" },
+        { "name": "rent", "amount": "1150" },
+        { "name": "savings", "amount": "330" }
+      ]
+    }
+  ]
